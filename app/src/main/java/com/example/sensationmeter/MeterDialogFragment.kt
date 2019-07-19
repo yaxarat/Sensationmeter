@@ -1,13 +1,25 @@
 package com.example.sensationmeter
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.sensationmeter.database.entity.Survey
+import com.example.sensationmeter.database.repository.Repository
 import com.example.sensationmeter.utility.Data
 import com.example.sensationmeter.utility.Log
+import io.reactivex.Single
+import javax.inject.Inject
 
 class MeterDialogFragment : DialogFragment() {
+    @Inject
+    lateinit var repository: Repository
+
+    override fun onAttach(context: Context) {
+        MainApp.application.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -47,15 +59,6 @@ class MeterDialogFragment : DialogFragment() {
         for (index in indexList) {
             dataValue[index] = 1
         }
-        Log(context!!).makeEntry(
-            Data(
-                dataValue[0],
-                dataValue[1],
-                dataValue[2],
-                dataValue[3],
-                dataValue[4],
-                "MeterDialogFragment"
-            )
-        )
+        repository.logSurvey(Single.just(Survey(0, dataValue[0], dataValue[1], dataValue[2], dataValue[3], dataValue[4])))
     }
 }

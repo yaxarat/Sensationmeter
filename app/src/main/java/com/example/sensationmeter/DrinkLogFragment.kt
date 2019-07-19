@@ -1,16 +1,29 @@
 package com.example.sensationmeter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.sensationmeter.database.entity.Drink
+import com.example.sensationmeter.database.repository.Repository
+import com.example.sensationmeter.database.repository.service.DrinkDao
 import com.example.sensationmeter.utility.Data
 import com.example.sensationmeter.utility.Log
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_drink_log.*
+import javax.inject.Inject
 
 class DrinkLogFragment : Fragment() {
+    @Inject lateinit var repository: Repository
+
+    override fun onAttach(context: Context) {
+        MainApp.application.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_drink_log, container, false)
@@ -31,26 +44,17 @@ class DrinkLogFragment : Fragment() {
     }
 
     private fun submit() {
+        val checkBoxArray: Array<CheckBox> = arrayOf(sugar_checkBox, caffeine_checkBox, alcohol_checkBox, carbonation_checkBox)
+        val drinkSpecArray: Array<Int> = arrayOf(0, 0, 0, 0)
         val intakeVolume = drinkVolume_editText.text.toString().toInt()
-        var sugar = 0
-        var caffeine = 0
-        var alcohol = 0
-        var carbonation = 0
 
-        if (sugar_checkBox.isChecked) {
-            sugar = 1
-        }
-        if (caffeine_checkBox.isChecked) {
-            caffeine = 1
-        }
-        if (alcohol_checkBox.isChecked) {
-            alcohol = 1
-        }
-        if (carbonation_checkBox.isChecked) {
-            carbonation = 1
+        for (n in 0 until checkBoxArray.size) {
+            if (checkBoxArray[n].isChecked) {
+                drinkSpecArray[n] = 1
+            }
         }
 
-        Log(context!!).makeEntry(Data(intakeVolume, sugar, caffeine, alcohol, carbonation, "DrinkLogFragment"))
+        repository.logDrink(Single.just(Drink(0, intakeVolume, drinkSpecArray[0], drinkSpecArray[1], drinkSpecArray[2], drinkSpecArray[3])))
         fragmentManager!!.popBackStack()
     }
 }
