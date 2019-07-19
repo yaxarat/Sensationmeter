@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".MainFragment"
+                                                   android:animateLayoutChanges="true">
+
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/meter_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="@string/menu_meter"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp" android:layout_marginEnd="50dp"
+            app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="181dp"
+            app:layout_constraintTop_toTopOf="parent" android:textSize="18sp"
+            android:fontFamily="@font/roboto_mono_medium"/>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/void_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="@string/menu_void"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="50dp" android:layout_marginEnd="50dp" android:layout_marginTop="35dp"
+            app:layout_constraintTop_toBottomOf="@+id/drink_button"
+            android:layout_marginBottom="180dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp" android:fontFamily="@font/roboto_mono_medium"/>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/drink_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="@string/menu_drink"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="50dp" android:layout_marginEnd="50dp" android:layout_marginTop="35dp"
+            app:layout_constraintTop_toBottomOf="@+id/meter_button"
+            app:layout_constraintBottom_toTopOf="@+id/void_button" android:textSize="18sp"
+            android:fontFamily="@font/roboto_mono_medium"/>
+    <TextView
+            android:text="@string/app_disclaimer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/meter_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:textAlignment="center"
+            android:fontFamily="@font/roboto_mono_medium"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/settings_fab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:srcCompat="@drawable/ic_settings_background_48dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="50dp" android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

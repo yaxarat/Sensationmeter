@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SensationMeter</string>
+    <string name="app_disclaimer">Caution: Investigational device. Limited to investigational use.</string>
+    <string name="app_save">Save</string>
+    <string name="app_submit">Submit</string>
+    <string name="app_undo">Undo</string>
+    <string name="app_yes">Yes</string>
+    <string name="app_no">No</string>
+    <string name="app_record">Record</string>
+    <string name="app_sd_card_error">SD Card not found! Saving to internal memory.</string>
+    <string name="menu_meter">Sensation Meter</string>
+    <string name="menu_drink">Drink Log</string>
+    <string name="menu_void">Void Log</string>
+    <string name="void_volume_hint">Enter void volume (ml)</string>
+    <string name="void_home">Home</string>
+    <string name="void_work">Work</string>
+    <string name="void_school">School</string>
+    <string name="void_other">Other Location</string>
+    <string name="void_location_not_picked">Pick your current location</string>
+    <string name="void_location_picked">Your current location:</string>
+    <string name="drink_log_direction">Fill in the amount of drink you had as well as its details</string>
+    <string name="drink_log_drink_hint">Drink volume in mL</string>
+    <string name="drink_log_caffeine_hint">Contains caffeine</string>
+    <string name="drink_log_sugar_hint">Contains sugar</string>
+    <string name="drink_log_alcohol_hint">Contains alcohol</string>
+    <string name="drink_log_carbonation_hint">Contains carbonation</string>
+    <string name="drink_log_error_toast">Please correctly fill in all the fields.</string>
+    <string name="drink_log_error_toast1">Alcohol percentage can\'t be over 100%.</string>
+    <string name="drink_log_error_toast2">Please fill in all the fields.</string>
+    <string name="meter_hint">Adjust the meter depending on your sensation</string>
+    <string name="meter_dialog_title">Felt any of the following?</string>
+    <string name="settings_hint">Set user id and other settings from here</string>
+    <string name="settings_hint_uid">User id</string>
+    <string name="settings_hint_password">Change password</string>
+    <string name="settings_warning_neither">Nothing was changed</string>
+    <string name="settings_warning_uid">Password changed</string>
+    <string name="settings_warning_pass">User id changed</string>
+    <string name="settings_warning_both">User id and password changed</string>
+    <string name="settings_enter_password">Enter password</string>
+    <string name="settings_wrong_password">Wrong password</string>
+
+    <!--For arrays-->
+    <string name="sense_tense">Tense</string>
+    <string name="sense_tingling">Tingling</string>
+    <string name="sense_pressure">Pressure</string>
+    <string name="sense_pain">Pain</string>
+    <string name="sense_other">Other</string>
+
+    <!--Default placeholder fragment text-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

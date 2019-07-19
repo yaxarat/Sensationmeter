@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_graph"
+            app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment"
+              android:name="com.example.sensationmeter.MainFragment"
+              android:label="fragment_main"
+              tools:layout="@layout/fragment_main">
+        <action android:id="@+id/to_drinkLogFragment" app:destination="@id/drinkLogFragment"/>
+        <action android:id="@+id/to_voidLogFragment" app:destination="@id/voidLogFragment"/>
+        <action android:id="@+id/to_meterFragment" app:destination="@id/meterFragment"/>
+        <action android:id="@+id/to_settingsFragment" app:destination="@id/settingsLoginFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/drinkLogFragment" android:name="com.example.sensationmeter.DrinkLogFragment"
+              android:label="fragment_drink_log" tools:layout="@layout/fragment_drink_log"/>
+
+    <fragment android:id="@+id/voidLogFragment" android:name="com.example.sensationmeter.VoidLogFragment"
+              android:label="fragment_void_log" tools:layout="@layout/fragment_void_log"/>
+
+    <fragment android:id="@+id/meterFragment" android:name="com.example.sensationmeter.MeterFragment"
+              android:label="fragment_meter" tools:layout="@layout/fragment_meter"/>
+
+    <fragment android:id="@+id/settingsLoginFragment" android:name="com.example.sensationmeter.SettingsLoginFragment"
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings">
+        <action android:id="@+id/settingsFragment_to_settingFragment" app:destination="@id/settingFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/settingFragment" android:name="com.example.sensationmeter.settingFragment"
+              android:label="fragment_setting" tools:layout="@layout/fragment_setting"/>
+
+</navigation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="senses">
+        <item>@string/sense_tense</item>
+        <item>@string/sense_tingling</item>
+        <item>@string/sense_pressure</item>
+        <item>@string/sense_pain</item>
+        <item>@string/sense_other</item>
+    </string-array>
+</resources>

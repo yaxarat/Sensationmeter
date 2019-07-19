@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".MeterFragment"
+                                                   android:animateLayoutChanges="true">
+    <me.itangqi.waveloadingview.WaveLoadingView
+            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:id="@+id/waveLoadingView"
+            app:wlv_borderColor="@color/colorInactive"
+            app:wlv_borderWidth="3dp"
+            app:wlv_shapeType="circle"
+            app:wlv_round_rectangle="true"
+            app:wlv_triangle_direction="north"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent" app:wlv_waveAmplitude="30"
+            app:wlv_waveColor="@color/colorPrimaryDark" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/progress_textView" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/undo_button"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_textView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="50dp" android:fontFamily="@font/roboto_mono_medium" android:textSize="80sp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <SeekBar
+            android:id="@+id/progress_seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progressDrawable="@drawable/seek_bar"
+            android:thumb="@drawable/seek_thumb"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/hint_textView"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit_button"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:text="@string/app_submit"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_mono_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="50dp" app:layout_constraintStart_toEndOf="@+id/undo_button"
+            android:layout_marginStart="8dp" android:visibility="invisible" android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/progress_seekBar"/>
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/undo_button"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:text="@string/app_undo"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorAccent"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_mono_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp" app:layout_constraintEnd_toStartOf="@+id/submit_button"
+            android:layout_marginEnd="8dp" android:visibility="invisible" android:layout_height="70dp"
+            android:layout_marginBottom="25dp" app:layout_constraintBottom_toTopOf="@+id/progress_seekBar"/>
+
+    <TextView
+            android:text="@string/meter_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/hint_textView"
+            android:fontFamily="@font/roboto_mono_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+            android:layout_marginBottom="32dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginEnd="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
