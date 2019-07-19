@@ -1,5 +1,6 @@
 package com.example.sensationmeter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +8,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
+import com.example.sensationmeter.database.entity.Void
+import com.example.sensationmeter.database.repository.Repository
 import com.example.sensationmeter.utility.Data
-import com.example.sensationmeter.utility.Log
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_void_log.*
+import javax.inject.Inject
 
 class VoidLogFragment : Fragment() {
+    @Inject
+    lateinit var repository: Repository
 
     private var locationLabel = ""
     private var activeColor = "#FFFF4081"
     private var inactiveColor = "#FF000000"
+
+    override fun onAttach(context: Context) {
+        MainApp.application.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -106,7 +117,7 @@ class VoidLogFragment : Fragment() {
 
     private fun submit() {
         val voidVolume = void_editText.text.toString().toInt()
-        Log(context!!).makeEntry(Data(voidVolume, locationLabel))
+        repository.logVoid(Single.just(Void(0, voidVolume, locationLabel)))
         fragmentManager!!.popBackStack()
     }
 }

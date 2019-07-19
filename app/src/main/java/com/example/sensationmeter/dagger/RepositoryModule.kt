@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.room.Room
 import com.example.sensationmeter.database.AppDatabase
 import com.example.sensationmeter.database.repository.service.DrinkDao
+import com.example.sensationmeter.database.repository.service.SenseDao
 import com.example.sensationmeter.database.repository.service.SurveyDao
+import com.example.sensationmeter.database.repository.service.VoidDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -28,5 +30,17 @@ class RepositoryModule {
     @Provides
     fun provideSurveyDao(appDatabase: AppDatabase): SurveyDao {
         return  appDatabase.surveyDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideSenseDao(appDatabase: AppDatabase): SenseDao {
+        return  appDatabase.senseDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideVoidDao(appDatabase: AppDatabase): VoidDao {
+        return  appDatabase.voidDao()
     }
 }

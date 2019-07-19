@@ -7,15 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import com.example.sensationmeter.database.entity.Sense
+import com.example.sensationmeter.database.repository.Repository
 import com.example.sensationmeter.utility.Data
 import com.example.sensationmeter.utility.Log
 import com.example.sensationmeter.setting.ApplicationSetting
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_meter.*
+import javax.inject.Inject
 
 class MeterFragment : Fragment() {
+    @Inject lateinit var repository: Repository
     private lateinit var thisContext: Context
     private var changed: Boolean = false
     private var lastMeterValue: Int = 0
+
+    override fun onAttach(context: Context) {
+        MainApp.application.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Create context for this fragment
@@ -52,7 +62,7 @@ class MeterFragment : Fragment() {
         submit_button.setOnClickListener {
             lastMeterValue = progress_seekBar.progress
             ApplicationSetting(thisContext).setSensationVal(lastMeterValue)
-            Log(context!!).makeEntry(Data(lastMeterValue))
+            repository.logSense(Single.just(Sense(0, lastMeterValue)))
             showMeterDialog()
             changed = false
             toggleButtons()
