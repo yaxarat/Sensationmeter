@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Survey(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val time: String,
     val tenseness: Int,
     val tingling: Int,
     val pressure: Int,

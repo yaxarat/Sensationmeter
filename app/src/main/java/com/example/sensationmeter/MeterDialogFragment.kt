@@ -7,8 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.sensationmeter.database.entity.Survey
 import com.example.sensationmeter.database.repository.Repository
-import com.example.sensationmeter.utility.Data
-import com.example.sensationmeter.utility.Log
+import com.example.sensationmeter.utility.Watch
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -59,6 +58,6 @@ class MeterDialogFragment : DialogFragment() {
         for (index in indexList) {
             dataValue[index] = 1
         }
-        repository.logSurvey(Single.just(Survey(0, dataValue[0], dataValue[1], dataValue[2], dataValue[3], dataValue[4])))
+        repository.logSurvey(Single.just(Survey(0, Watch.currentTime(), dataValue[0], dataValue[1], dataValue[2], dataValue[3], dataValue[4])))
     }
 }

@@ -3,10 +3,10 @@ package com.example.sensationmeter.dagger
 import android.app.Application
 import androidx.room.Room
 import com.example.sensationmeter.database.AppDatabase
-import com.example.sensationmeter.database.repository.service.DrinkDao
-import com.example.sensationmeter.database.repository.service.SenseDao
-import com.example.sensationmeter.database.repository.service.SurveyDao
-import com.example.sensationmeter.database.repository.service.VoidDao
+import com.example.sensationmeter.database.repository.dao.DrinkDao
+import com.example.sensationmeter.database.repository.dao.SenseDao
+import com.example.sensationmeter.database.repository.dao.SurveyDao
+import com.example.sensationmeter.database.repository.dao.VoidDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

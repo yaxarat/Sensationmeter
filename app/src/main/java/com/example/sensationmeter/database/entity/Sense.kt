@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Sense(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val time: String,
     val senseValue: Int
 )

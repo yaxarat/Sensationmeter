@@ -5,10 +5,10 @@ import com.example.sensationmeter.database.entity.Drink
 import com.example.sensationmeter.database.entity.Sense
 import com.example.sensationmeter.database.entity.Survey
 import com.example.sensationmeter.database.entity.Void
-import com.example.sensationmeter.database.repository.service.DrinkDao
-import com.example.sensationmeter.database.repository.service.SenseDao
-import com.example.sensationmeter.database.repository.service.SurveyDao
-import com.example.sensationmeter.database.repository.service.VoidDao
+import com.example.sensationmeter.database.repository.dao.DrinkDao
+import com.example.sensationmeter.database.repository.dao.SenseDao
+import com.example.sensationmeter.database.repository.dao.SurveyDao
+import com.example.sensationmeter.database.repository.dao.VoidDao
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -32,5 +32,21 @@ class Repository @Inject constructor(private val drinkDao: DrinkDao, private val
 
     fun logVoid(void: Single<Void>) {
         void.subscribeOn(Schedulers.io()).subscribe { newVoid -> voidDao.insert(newVoid) }
+    }
+
+    fun getDrink(): Single<List<Drink>> {
+        return drinkDao.getAllDrinkLog()
+    }
+
+    fun getSurvey(): Single<List<Survey>> {
+        return surveyDao.getAllSurveyLog()
+    }
+
+    fun getSense(): Single<List<Sense>> {
+        return senseDao.getAllSenseLog()
+    }
+
+    fun getVoid(): Single<List<Void>> {
+        return  voidDao.getAllVoidLog()
     }
 }

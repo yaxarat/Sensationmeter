@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Void(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val time: String,
     val voidVolume: Int,
     val locationLabel: String
 )

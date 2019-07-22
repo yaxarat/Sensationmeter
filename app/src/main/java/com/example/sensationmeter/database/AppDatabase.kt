@@ -6,10 +6,10 @@ import com.example.sensationmeter.database.entity.Drink
 import com.example.sensationmeter.database.entity.Sense
 import com.example.sensationmeter.database.entity.Survey
 import com.example.sensationmeter.database.entity.Void
-import com.example.sensationmeter.database.repository.service.DrinkDao
-import com.example.sensationmeter.database.repository.service.SenseDao
-import com.example.sensationmeter.database.repository.service.SurveyDao
-import com.example.sensationmeter.database.repository.service.VoidDao
+import com.example.sensationmeter.database.repository.dao.DrinkDao
+import com.example.sensationmeter.database.repository.dao.SenseDao
+import com.example.sensationmeter.database.repository.dao.SurveyDao
+import com.example.sensationmeter.database.repository.dao.VoidDao
 
 @Database(entities = [Drink::class, Survey::class, Sense::class, Void::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {

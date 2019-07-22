@@ -10,7 +10,7 @@ import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import com.example.sensationmeter.database.entity.Void
 import com.example.sensationmeter.database.repository.Repository
-import com.example.sensationmeter.utility.Data
+import com.example.sensationmeter.utility.Watch
 import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_void_log.*
 import javax.inject.Inject
@@ -117,7 +117,7 @@ class VoidLogFragment : Fragment() {
 
     private fun submit() {
         val voidVolume = void_editText.text.toString().toInt()
-        repository.logVoid(Single.just(Void(0, voidVolume, locationLabel)))
+        repository.logVoid(Single.just(Void(0, Watch.currentTime(), voidVolume, locationLabel)))
         fragmentManager!!.popBackStack()
     }
 }

@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.sensationmeter.database.entity.Drink
 import com.example.sensationmeter.database.repository.Repository
-import com.example.sensationmeter.database.repository.service.DrinkDao
-import com.example.sensationmeter.utility.Data
-import com.example.sensationmeter.utility.Log
+import com.example.sensationmeter.utility.Watch
 import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_drink_log.*
 import javax.inject.Inject
@@ -54,7 +52,7 @@ class DrinkLogFragment : Fragment() {
             }
         }
 
-        repository.logDrink(Single.just(Drink(0, intakeVolume, drinkSpecArray[0], drinkSpecArray[1], drinkSpecArray[2], drinkSpecArray[3])))
+        repository.logDrink(Single.just(Drink(0, Watch.currentTime(), intakeVolume, drinkSpecArray[0], drinkSpecArray[1], drinkSpecArray[2], drinkSpecArray[3])))
         fragmentManager!!.popBackStack()
     }
 }

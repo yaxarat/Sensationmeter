@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.sensationmeter.utility.Log
+import com.example.sensationmeter.utility.logger.Log
 import com.example.sensationmeter.utility.Permission
+import com.example.sensationmeter.utility.logger.SaveDirectoryCreator
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
@@ -23,7 +24,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         checkPermissions()
-        Log.makeSaveDirectory(this.requireContext())
+        SaveDirectoryCreator().makeSaveDirectory(this.requireContext())
 
         drink_button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.to_drinkLogFragment))
         void_button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.to_voidLogFragment))
