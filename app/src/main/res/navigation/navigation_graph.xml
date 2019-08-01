@@ -25,10 +25,10 @@
 
     <fragment android:id="@+id/settingsLoginFragment" android:name="com.example.sensationmeter.SettingsLoginFragment"
               android:label="fragment_settings" tools:layout="@layout/fragment_settings">
-        <action android:id="@+id/settingsFragment_to_settingFragment" app:destination="@id/settingFragment"/>
+        <action android:id="@+id/toSettingFragment" app:destination="@+id/SettingFragment"/>
     </fragment>
 
-    <fragment android:id="@+id/settingFragment" android:name="com.example.sensationmeter.settingFragment"
+    <fragment android:id="@+id/SettingFragment" android:name="com.example.sensationmeter.SettingFragment"
               android:label="fragment_setting" tools:layout="@layout/fragment_setting"/>
 
 </navigation>

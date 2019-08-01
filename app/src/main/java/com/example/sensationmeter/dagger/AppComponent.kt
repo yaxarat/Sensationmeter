@@ -1,9 +1,6 @@
 package com.example.sensationmeter.dagger
 
-import com.example.sensationmeter.DrinkLogFragment
-import com.example.sensationmeter.MeterDialogFragment
-import com.example.sensationmeter.MeterFragment
-import com.example.sensationmeter.VoidLogFragment
+import com.example.sensationmeter.*
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,4 +11,5 @@ interface AppComponent {
     fun inject(meterDialogFragment: MeterDialogFragment)
     fun inject(meterFragment: MeterFragment)
     fun inject(voidLogFragment: VoidLogFragment)
+    fun inject(settingFragment: SettingFragment)
 }

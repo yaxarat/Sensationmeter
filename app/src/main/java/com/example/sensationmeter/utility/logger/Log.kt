@@ -1,21 +1,35 @@
 package com.example.sensationmeter.utility.logger
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.os.Environment
 import android.util.Log
-import android.widget.Toast
 import com.example.sensationmeter.MainApp
-import com.example.sensationmeter.R
+import com.example.sensationmeter.database.entity.Drink
+import com.example.sensationmeter.database.entity.Sense
+import com.example.sensationmeter.database.entity.Survey
+import com.example.sensationmeter.database.entity.Void
+import com.example.sensationmeter.database.repository.Repository
 import com.example.sensationmeter.setting.UserInformation
-import com.example.sensationmeter.utility.Watch
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.Single.zip
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function4
+import io.reactivex.schedulers.Schedulers
 import java.io.*
+import javax.inject.Inject
 
-class Log {
+@SuppressLint("CheckResult")
+class Log @Inject constructor(private  val repository: Repository) {
     private val userName = UserInformation(MainApp.application).getName()
     private val root: File = Environment.getExternalStorageDirectory()
     private var log: File = File(root, userIdCheck())
     private val csvHeader = "Date,Time,Sense Value,Tenseness,Tingling,Pressure,Pain,Other Sense,Intake Volume,Sugar,Caffeine,Alcohol,Carbonation,Void Volume,Location Label"
     private var entry = "No entry error"
+    private var drinkList: List<Drink> = emptyList()
+    private var senseList: List<Sense> = emptyList()
+    private var surveyList: List<Survey> = emptyList()
+    private var voidList: List<Void> = emptyList()
 
     private fun userIdCheck(): String {
         val folder = "SensationData/"
@@ -23,8 +37,9 @@ class Log {
     }
 
     fun exportToCSV(): Boolean {
-
         checkHeader()
+        fetchRecords()
+//        makeEntry()
         write()
         return true
     }
@@ -42,6 +57,28 @@ class Log {
         } catch (e: IOException) {
             Log.e("tag", "IOException")
         }
+    }
+
+    // TODO: fix
+    // Combine multilpe rx into one here
+    private fun fetchRecords() {
+        zip(
+            repository.getDrink(),
+            repository.getSense(),
+            repository.getSurvey(),
+            repository.getVoid(),
+            Function4<List<Drink>, List<Sense>, List<Survey>, List<Void>, List<Any>> { drinks, senses, survey, void  -> return@Function4 printer(drinks, senses, survey, void) })
+            .subscribeOn(Schedulers.computation())
+            .subscribe { response -> makeEntry(response) }
+    }
+    private fun makeEntry(data: List<Any>) {
+        Log.d("Tag", "${data[0]} \n ${data[1]} \n" +
+                " ${data[2]} \n" +
+                " ${data[3]}")
+    }
+
+    private fun printer(drinks: List<Drink>, senses: List<Sense>, surveys: List<Survey>, voids: List<Void>): List<Any> {
+        return arrayListOf(drinks, senses, surveys, voids)
     }
 
     private fun write() {

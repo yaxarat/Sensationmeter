@@ -49,22 +49,18 @@ class VoidLogFragment : Fragment() {
         home_button.setOnClickListener {
             locationLabel = "Home"
             toggleTextColor()
-            Data().locationLabel = locationLabel
         }
         work_button.setOnClickListener {
             locationLabel = "Work"
             toggleTextColor()
-            Data().locationLabel = locationLabel
         }
         school_button.setOnClickListener {
             locationLabel = "School"
             toggleTextColor()
-            Data().locationLabel = locationLabel
         }
         other_button.setOnClickListener {
             locationLabel = "Other"
             toggleTextColor()
-            Data().locationLabel = locationLabel
         }
     }
 

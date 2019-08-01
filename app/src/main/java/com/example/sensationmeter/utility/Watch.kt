@@ -10,7 +10,7 @@ import java.util.*
 class Watch {
     companion object {
         private var formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.GERMAN)
-        private var currentSystemTime: String = LocalDateTime.now().format(formatter).toString()
+        private var currentSystemTime: String = LocalDateTime.now().format(formatter)
 
         fun currentTime(): String {
             return currentSystemTime

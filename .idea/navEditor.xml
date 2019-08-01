@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="SettingFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-2519" />
+                            <option name="y" value="92" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="drinkLogFragment">
                     <value>
                       <LayoutPositions>
@@ -68,18 +80,6 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="settingFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-2519" />
-                            <option name="y" value="92" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="settingsLoginFragment">
                     <value>
                       <LayoutPositions>
@@ -91,7 +91,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="settingsFragment_to_settingFragment">
+                            <entry key="toSettingFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

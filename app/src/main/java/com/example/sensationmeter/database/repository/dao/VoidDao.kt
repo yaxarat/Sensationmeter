@@ -12,6 +12,6 @@ interface VoidDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(void: Void)
 
-    @Query("SELECT * FROM drink_log")
+    @Query("SELECT * FROM void_log")
     fun getAllVoidLog(): Single<List<Void>>
 }

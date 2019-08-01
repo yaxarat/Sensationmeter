@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.sensationmeter.setting.ApplicationSetting
 import com.example.sensationmeter.setting.UserInformation
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -24,18 +25,20 @@ class SettingsLoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toggle()
+        check_button.setOnClickListener { findNavController().navigate(R.id.toSettingFragment) }
 
-        check_button.setOnClickListener {
-            if (!unlocked) {
-                checkPass()
-                toggle()
-            } else {
-                setUserInformation()
-                toggle()
-                fragmentManager!!.popBackStack()
-            }
-        }
+//        toggle()
+
+//        check_button.setOnClickListener {
+//            if (!unlocked) {
+//                checkPass()
+//                toggle()
+//            } else {
+//                setUserInformation()
+//                toggle()
+//                fragmentManager!!.popBackStack()
+//            }
+//        }
     }
 
     private fun setUserInformation() {
