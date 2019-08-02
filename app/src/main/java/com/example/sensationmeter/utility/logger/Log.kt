@@ -10,10 +10,7 @@ import com.example.sensationmeter.database.entity.Survey
 import com.example.sensationmeter.database.entity.Void
 import com.example.sensationmeter.database.repository.Repository
 import com.example.sensationmeter.setting.UserInformation
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.Single.zip
-import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function4
 import io.reactivex.schedulers.Schedulers
 import java.io.*
@@ -26,10 +23,6 @@ class Log @Inject constructor(private  val repository: Repository) {
     private var log: File = File(root, userIdCheck())
     private val csvHeader = "Date,Time,Sense Value,Tenseness,Tingling,Pressure,Pain,Other Sense,Intake Volume,Sugar,Caffeine,Alcohol,Carbonation,Void Volume,Location Label"
     private var entry = "No entry error"
-    private var drinkList: List<Drink> = emptyList()
-    private var senseList: List<Sense> = emptyList()
-    private var surveyList: List<Survey> = emptyList()
-    private var voidList: List<Void> = emptyList()
 
     private fun userIdCheck(): String {
         val folder = "SensationData/"
@@ -39,7 +32,6 @@ class Log @Inject constructor(private  val repository: Repository) {
     fun exportToCSV(): Boolean {
         checkHeader()
         fetchRecords()
-//        makeEntry()
         write()
         return true
     }
@@ -59,26 +51,29 @@ class Log @Inject constructor(private  val repository: Repository) {
         }
     }
 
-    // TODO: fix
-    // Combine multilpe rx into one here
     private fun fetchRecords() {
-        zip(
-            repository.getDrink(),
-            repository.getSense(),
-            repository.getSurvey(),
-            repository.getVoid(),
-            Function4<List<Drink>, List<Sense>, List<Survey>, List<Void>, List<Any>> { drinks, senses, survey, void  -> return@Function4 printer(drinks, senses, survey, void) })
-            .subscribeOn(Schedulers.computation())
-            .subscribe { response -> makeEntry(response) }
-    }
-    private fun makeEntry(data: List<Any>) {
-        Log.d("Tag", "${data[0]} \n ${data[1]} \n" +
-                " ${data[2]} \n" +
-                " ${data[3]}")
+        Single.zip(
+            repository.getDrink().subscribeOn(Schedulers.newThread()),
+            repository.getSense().subscribeOn(Schedulers.newThread()),
+            repository.getSurvey().subscribeOn(Schedulers.newThread()),
+            repository.getVoid().subscribeOn(Schedulers.newThread()),
+            Function4 { s1: List<Drink>, s2: List<Sense>, s3: List<Survey>, s4: List<Void> ->  return@Function4 arrayListOf(s1, s2, s3, s4)})
+            .subscribe({responseArray -> makeEntry(responseArray)}, {error -> Log.e("tag", "$error")})
     }
 
-    private fun printer(drinks: List<Drink>, senses: List<Sense>, surveys: List<Survey>, voids: List<Void>): List<Any> {
-        return arrayListOf(drinks, senses, surveys, voids)
+    private fun makeEntry(data: List<List<Any>>) {
+        var i = 0
+        val drinkList: List<Drink> = data[0].map { it as Drink }
+        val senseList: List<Sense> = data[1].map { it as Sense }
+        val surveyList: List<Survey> = data[2].map {it as Survey}
+        val voidList: List<Void> = data[4].map { it as Void }
+        val rowSize = arrayListOf(drinkList.size, senseList.size, surveyList.size, voidList.size).sum()
+
+        do {
+            drinkList[0].time
+
+            i++
+        } while (i < rowSize)
     }
 
     private fun write() {
