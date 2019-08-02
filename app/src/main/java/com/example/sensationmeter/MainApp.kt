@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.sensationmeter.dagger.AppComponent
 import com.example.sensationmeter.dagger.AppModule
 import com.example.sensationmeter.dagger.DaggerAppComponent
+import io.reactivex.plugins.RxJavaPlugins
 
 class MainApp : Application() {
     lateinit var appComponent: AppComponent
@@ -16,5 +17,6 @@ class MainApp : Application() {
         super.onCreate()
         application = this
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        RxJavaPlugins.setErrorHandler {}
     }
 }

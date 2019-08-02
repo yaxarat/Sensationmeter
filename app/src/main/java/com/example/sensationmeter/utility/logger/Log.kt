@@ -64,11 +64,13 @@ class Log @Inject constructor(private  val repository: Repository) {
     @SuppressLint("NewApi")
     private fun makeEntry(data: List<List<Any>>) {
         var i = 0
+        val rowSize = listOf(data[0], data[1], data[2], data[3]).flatten().size // TODO: issue is here
         val drinkList: List<Drink> = data[0].map { it as Drink }
         val senseList: List<Sense> = data[1].map { it as Sense }
         val surveyList: List<Survey> = data[2].map {it as Survey}
         val voidList: List<Void> = data[4].map { it as Void }
-        val rowSize = arrayListOf(drinkList.size, senseList.size, surveyList.size, voidList.size).sum()
+
+        Log.d("tag", "SIZE: $rowSize \n ------------------- \n $drinkList \n $senseList \n $surveyList \n $voidList \n -----------------------")
 
         do {
             var minTime = 0
