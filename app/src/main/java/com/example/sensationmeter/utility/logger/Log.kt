@@ -58,7 +58,7 @@ class Log @Inject constructor(private  val repository: Repository) {
             repository.getSurvey().subscribeOn(Schedulers.newThread()),
             repository.getVoid().subscribeOn(Schedulers.newThread()),
             Function4 { s1: List<Drink>, s2: List<Sense>, s3: List<Survey>, s4: List<Void> ->  return@Function4 arrayListOf(s1, s2, s3, s4)})
-            .subscribe({responseArray -> makeEntry(responseArray)})
+            .subscribe { responseArray -> makeEntry(responseArray)}
     }
 
     @SuppressLint("NewApi")
